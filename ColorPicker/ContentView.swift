@@ -10,17 +10,21 @@ import SwiftUI
 struct ContentView: View {
     
     @State var SwiftyColor: Color = .red
+    @State var swiftyOpacity: Double = 0.7
+    
     var body: some View {
         VStack {
             
             ColorPicker("Swifty Color", selection: $SwiftyColor)
+            Slider(value: $swiftyOpacity, in: 0...1)
+                .accentColor(SwiftyColor)
             
             Image(systemName: "swift")
                 .resizable()
                 .scaledToFit()
                 .padding(25)
                 .foregroundColor(.white)
-                .opacity(0.7)
+                .opacity(swiftyOpacity)
                 .background(SwiftyColor)
                 .cornerRadius(50)
             
