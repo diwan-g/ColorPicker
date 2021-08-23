@@ -9,15 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var SwiftyColor: Color = .red
-    @State var swiftyOpacity: Double = 0.7
+    @State private var SwiftyColor: Color = .red
+    @State private var swiftyOpacity: Double = 0.7
     
     var body: some View {
         VStack {
             
-            ColorPicker("Swifty Color", selection: $SwiftyColor)
-            Slider(value: $swiftyOpacity, in: 0...1)
-                .accentColor(SwiftyColor)
+            SwiftyControls(SwiftyColor: $SwiftyColor, swiftyOpacity: $swiftyOpacity)
+            
             
             Image(systemName: "swift")
                 .resizable()
@@ -36,5 +35,17 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct SwiftyControls: View {
+    @Binding var SwiftyColor: Color
+    @Binding var swiftyOpacity: Double
+    var body: some View {
+        VStack {
+            ColorPicker("Swifty Color", selection: $SwiftyColor)
+            Slider(value: $swiftyOpacity, in: 0...1)
+                .accentColor(SwiftyColor)
+        }
     }
 }
